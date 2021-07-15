@@ -1,0 +1,11 @@
+RewriteEngine On
+
+#Zugriff auf eine Datei, die nicht existiert
+RewriteCond %{REQUEST_FILENAME} !-f
+#Zugriff auf ein Verzeichnis, welches nicht existiert
+RewriteCond %{REQUEST_FILENAME} !-d
+#Zugriff auf einen symbolisch Link, der nicht existiert
+#(Linux/Unix)
+RewriteCond %{REQUEST_FILENAME} !-l
+#Umleitung zur index.php + Übergabe über GET
+RewriteRule ^(.+)$ index.php?nav=$1 [QSA,L]
